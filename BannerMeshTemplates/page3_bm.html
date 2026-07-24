@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload your logo & other artwork files</title>
+  
+  <!-- Link Inter font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <style>
+    /* Basic reset and centering */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 96px;
+      min-height: 100vh;
+      background-color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+    }
+
+    /* --- Header Styles --- */
+    .main-header {
+      width: 100%;
+      height: 96px;
+      border-bottom: 1px solid #E5E5E5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      padding: 0 20px;
+      margin-bottom: 64px;
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1216px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-logo {
+      width: 201px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .header-title {
+      color: #171717;
+      font-size: 18px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      text-align: center;
+      word-wrap: break-word;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Main Container (Title, Stepper, Description) */
+    .onboarding-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      padding: 0 20px;
+      max-width: 700px; 
+      margin-bottom: 64px; 
+    }
+
+    /* Title Styling */
+    .title {
+      color: #171717;
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 38px;
+      margin: 0;
+    }
+
+    /* Progress/Stepper Layout */
+    .stepper-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stepper-line {
+      position: absolute;
+      top: 50%;
+      left: 30px; 
+      right: 30px; 
+      transform: translateY(-50%);
+      border-top: 2px dashed #D4D4D4; 
+      z-index: 1;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      gap: 60px; 
+      position: relative;
+      z-index: 2;
+    }
+
+    .step {
+      width: 60px; 
+      height: 60px; 
+      box-sizing: border-box; 
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px; 
+      font-weight: 600;
+      line-height: normal;
+      background-color: #ffffff;
+    }
+
+    .step.active {
+      background-color: #F0FDF4;
+      color: #15803D;
+      border: 2px solid #15803D; 
+    }
+
+    .step.inactive {
+      background-color: #FAFAFA; 
+      color: #525252;
+      border: 2px solid #E5E5E5; 
+    }
+
+    .description {
+      color: #525252;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      margin: 0;
+    }
+
+    /* --- Two Column Layout --- */
+    .content-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 32px; /* Exact 32px gap between left and right column */
+      width: 100%;
+      max-width: 896px; /* 432 + 432 + 32 */
+      padding: 0 20px;
+    }
+
+    /* Exactly 432px width constraint applied to both columns */
+    .left-column {
+      width: 100%;
+      max-width: 432px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .right-column {
+      width: 100%;
+      max-width: 432px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* 20px gap between input fields and button */
+    }
+
+    /* --- Upload Left Section --- */
+    .upload-zone {
+      width: 100%;
+      min-height: 126px; /* At least 126px height */
+      padding: 16px 24px; /* Exact 16px top/bottom, 24px left/right padding */
+      background: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #E5E5E5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .upload-zone:hover, .upload-zone.dragover {
+      border-color: #a3a3a3;
+      background: #FAFAFA;
+    }
+
+    .upload-zone-text-primary {
+      color: #332900;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+    .upload-zone-text-secondary {
+      color: #525252;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    .upload-zone-hint {
+      color: #525252;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px;
+      text-align: center;
+      max-width: 250px; /* Max width of 250px exactly for the hint */
+      margin: 0 auto;
+    }
+
+    .upload-status-list {
+      margin-top: 16px; /* Exact 16px gap between upload box and status list */
+      display: flex;
+      flex-direction: column;
+      gap: 12px; /* 12px gap between multiple upload statuses */
+    }
+
+    .status-item {
+      width: 100%;
+      min-height: 96px; /* 96px status height */
+      padding: 16px;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #E5E5E5;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      box-sizing: border-box;
+    }
+
+    .status-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .status-header {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .file-name {
+      color: #404040;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      word-break: break-all;
+    }
+
+    .file-size {
+      color: #525252;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    .progress-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: #F5F5F7;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      color: #404040;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      min-width: 35px;
+      text-align: right;
+    }
+
+    .action-btn {
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+    }
+
+    .action-btn:hover {
+      background-color: #FAFAFA;
+    }
+
+    /* State Colors for Upload */
+    .state-success .progress-fill { background: #22C55E; }
+    .state-success .file-icon { color: #22C55E; }
+    
+    .state-uploading .progress-fill { background: #EAB308; }
+    .state-uploading .file-icon { color: #EAB308; }
+    
+    .state-error .progress-fill { background: #EF4444; }
+    .state-error .file-icon { color: #EF4444; }
+    .state-error .file-size { color: #EF4444; }
+
+    /* --- Form Right Section --- */
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .field-label {
+      color: #404040;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+    }
+
+    .field-label .req {
+      color: #EF4444;
+    }
+
+    .input-field {
+      width: 100%;
+      height: 44px; /* 44px fixed height for normal inputs */
+      padding: 10px 14px;
+      background: #ffffff;
+      border: 1px solid #D4D4D4;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      color: #171717;
+      outline: none;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      transition: border-color 0.2s;
+    }
+    
+    .input-field.error {
+      border-color: #B91C1C;
+    }
+
+    .input-field::placeholder {
+      color: #737373;
+    }
+
+    .input-field:focus {
+      border-color: #a3a3a3;
+    }
+
+    .textarea-field {
+      width: 100%;
+      min-height: 128px; /* 128px minimum initial height */
+      padding: 10px 14px;
+      background: #ffffff;
+      border: 1px solid #D4D4D4;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      color: #171717;
+      outline: none;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      resize: none; /* Prevent manual resize */
+      overflow: hidden; /* Hide scrollbar for auto-grow */
+      transition: border-color 0.2s;
+    }
+    
+    .textarea-field::placeholder {
+      color: #737373;
+    }
+
+    .textarea-field:focus {
+      border-color: #a3a3a3;
+    }
+
+    /* Validations and Helper texts positioning */
+    .validation-text {
+      font-size: 12px;
+      line-height: 18px;
+      margin-top: -2px;
+    }
+
+    .error-text {
+      color: #B91C1C;
+      display: none;
+    }
+    
+    .char-counter {
+      color: #737373;
+    }
+
+    .submit-btn {
+      width: 100%;
+      height: 48px;
+      background: #FFCC00;
+      border: 1px solid #FFCC00;
+      border-radius: 8px;
+      color: #442304;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      transition: opacity 0.2s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* Hidden file input */
+    #fileInput {
+      display: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1240px) {
+      
+      .header-title {
+        text-align: right;
+      }
+    }
+
+    @media (max-width: 630px) {
+      
+      .header-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .header-title {
+        text-align: center;
+        font-size: 16px;
+      }
+      .main-header {
+        height: auto;
+        padding: 20px;
+      }
+    }
+
+    .submit-files {
+      text-decoration: none;
+      color: #332900;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="../index.html">
+          <img src="https://mlqlsvcjggrx.i.optimole.com/w:201/h:42/q:mauto/f:best/ig:avif/https://builderssigns.com.au/wp-content/uploads/2026/06/Dark-and-Yellow-Landscape-2.svg" alt="Builders Signs Logo">
+        </a>  
+      </div>
+      <div class="header-title">Design Your Banner</div>
+    </div>
+  </header>
+
+  <!-- Top Content -->
+  <div class="onboarding-container">
+    <h1 class="title">Upload your logo & <br>other artwork files</h1>
+    <div class="stepper-wrapper">
+      <div class="stepper-line"></div>
+      <div class="steps">
+        <div class="step active">01</div>
+        <div class="step active">02</div>
+        <div class="step active">03</div>
+      </div>
+    </div>
+    <p class="description">
+      For the sharpest print quality, upload a vector <br> file (.AI, .EPS, or vector .PDF).
+    </p>
+  </div>
+
+  <!-- Two Column Layout -->
+  <div class="content-wrapper">
+    
+    <!-- Left Column: Upload -->
+    <div class="left-column">
+      
+      <!-- Upload Zone -->
+      <label class="upload-zone" id="dropZone" for="fileInput">
+        <i class="ph ph-upload-simple" style="font-size: 40px; color: #171717;"></i>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+          <div style="display: flex; gap: 4px;">
+            <span class="upload-zone-text-primary">Click to upload</span>
+            <span class="upload-zone-text-secondary">or drag and drop</span>
+          </div>
+          <div class="upload-zone-hint">AI, EPS, JPEG, JPG, PDF, PNG, PSD, SVG, TIF, TIFF, ZIP (max. 50MB per file)</div>
+        </div>
+      </label>
+      <input type="file" id="fileInput" multiple>
+
+      <!-- Upload Status List -->
+      <div class="upload-status-list" id="uploadList">
+        <!-- Status items will be injected here via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Right Column: Form Inputs -->
+    <div class="right-column">
+      
+      <div class="field-group">
+        <label class="field-label">Email Used During Order <span class="req">*</span></label>
+        <input type="email" id="emailInput" class="input-field" placeholder="johndoe@company.com">
+        <!-- Email error message aligned similarly to 12px font request -->
+        <div class="validation-text error-text" id="emailError">Invalid Email Address</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Order Number (optional)</label>
+        <input type="text" class="input-field" placeholder="100-iurn343-26">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Additional Message & Instructions Here</label>
+        <textarea 
+          id="messageInput" 
+          class="textarea-field" 
+          placeholder="Enter a description..." 
+          maxlength="1000"
+        ></textarea>
+        <!-- Dynamic Character Counter Indicator -->
+        <div class="validation-text char-counter" id="charCounter">1000 characters remaining</div>
+      </div>
+
+      <a class="submit-files" href="Thank_You_UploadNow.html"><button class="submit-btn">Submit</button></a>
+
+    </div>
+  </div>
+
+  <script>
+    // --- Auto-growing Textarea & Character Counter (Max 1000 Chars) ---
+    const messageInput = document.getElementById('messageInput');
+    const charCounter = document.getElementById('charCounter');
+    const MAX_CHARS = 1000;
+
+    messageInput.addEventListener('input', function() {
+      // 1. Auto Grow Logic
+      this.style.height = 'auto'; // Reset
+      this.style.height = (this.scrollHeight) + 'px'; // Expand to fit
+
+      // 2. Character Countdown Logic
+      const remaining = MAX_CHARS - this.value.length;
+      if (remaining <= 0) {
+        charCounter.innerText = '0 characters remaining';
+        charCounter.style.color = '#B91C1C'; // Red error color when limit hit
+      } else {
+        charCounter.innerText = remaining + ' characters remaining';
+        charCounter.style.color = '#737373'; // Default gray color
+      }
+    });
+
+    // --- Email Validation ---
+    const emailInput = document.getElementById('emailInput');
+    const emailError = document.getElementById('emailError');
+
+    emailInput.addEventListener('input', function() {
+      const email = this.value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (email.length > 0 && !emailRegex.test(email)) {
+        emailError.style.display = 'block';
+        emailInput.classList.add('error');
+      } else {
+        emailError.style.display = 'none';
+        emailInput.classList.remove('error');
+      }
+    });
+
+    // --- File Upload Logic ---
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const uploadList = document.getElementById('uploadList');
+    
+    const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB in bytes
+    const ALLOWED_EXTENSIONS = ['ai', 'eps', 'jpeg', 'jpg', 'pdf', 'png', 'psd', 'svg', 'tif', 'tiff', 'zip'];
+
+    // Utility: Format File Size
+    function formatBytes(bytes, decimals = 2) {
+      if (!+bytes) return '0 Bytes';
+      const k = 1024;
+      const dm = decimals < 0 ? 0 : decimals;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+    }
+
+    // Drag & Drop Events
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone.addEventListener(eventName, () => dropZone.classList.add('dragover'), false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, () => dropZone.classList.remove('dragover'), false);
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      let dt = e.dataTransfer;
+      let files = dt.files;
+      handleFiles(files);
+    });
+
+    fileInput.addEventListener('change', function() {
+      handleFiles(this.files);
+      this.value = ''; // Reset input so same file can be selected again
+    });
+
+    function handleFiles(files) {
+      [...files].forEach(processFile);
+    }
+
+    function processFile(file) {
+      // Validation Check 1: Extensions
+      const fileExt = file.name.split('.').pop().toLowerCase();
+      const isValidExt = ALLOWED_EXTENSIONS.includes(fileExt);
+
+      // Validation Check 2: Size
+      const isOversized = file.size > MAX_FILE_SIZE;
+
+      // Unique file ID
+      const fileId = 'file-' + Math.random().toString(36).substr(2, 9);
+      
+      // Create DOM element for the file status block
+      const itemEl = document.createElement('div');
+      itemEl.className = 'status-item';
+      itemEl.id = fileId;
+      uploadList.appendChild(itemEl);
+
+      // Trigger respective states based on validation conditions
+      if (!isValidExt) {
+        renderFileHTML(itemEl, 'error', file.name, 'Invalid format (Unsupported file type)', 0);
+      } else if (isOversized) {
+        renderFileHTML(itemEl, 'error', file.name, formatBytes(file.size) + ' (Exceeds 50MB limit)', 0);
+      } else {
+        renderFileHTML(itemEl, 'uploading', file.name, formatBytes(file.size), 0);
+        simulateUpload(itemEl, file.name, formatBytes(file.size));
+      }
+    }
+
+    // Progress simulation loop
+    function simulateUpload(element, name, sizeStr) {
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.floor(Math.random() * 20) + 10; // Increment by 10-30%
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          // Change to Success State
+          renderFileHTML(element, 'success', name, sizeStr, 100);
+        } else {
+          // Update progress UI only
+          const fill = element.querySelector('.progress-fill');
+          const text = element.querySelector('.progress-text');
+          if (fill && text) {
+            fill.style.width = progress + '%';
+            text.innerText = progress + '%';
+          }
+        }
+      }, 300); // UI update tick
+    }
+
+    // Function to manually cancel/remove file from the interface
+    function removeFile(elementId) {
+      const el = document.getElementById(elementId);
+      if (el) {
+        el.remove();
+      }
+    }
+
+    // Template Generator for the 3 States (Success, Uploading, Error)
+    function renderFileHTML(element, state, name, subText, progress) {
+      let iconSvg, actionSvg, stateClass;
+
+      if (state === 'success') {
+        stateClass = 'state-success';
+        iconSvg = `<i class="ph ph-cloud-check file-icon" style="font-size: 28px;"></i>`;
+        actionSvg = `
+          <div style="width: 16px; height: 16px; background: #22C55E; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+            <i class="ph-bold ph-check" style="font-size: 10px; color: white;"></i>
+          </div>`;
+      } 
+      else if (state === 'uploading') {
+        stateClass = 'state-uploading';
+        iconSvg = `<i class="ph ph-cloud-arrow-up file-icon" style="font-size: 28px;"></i>`;
+        actionSvg = `
+          <div class="action-btn" onclick="removeFile('${element.id}')">
+            <i class="ph-bold ph-trash" style="font-size: 20px; color: #737373;"></i>
+          </div>`;
+      } 
+      else if (state === 'error') {
+        stateClass = 'state-error';
+        iconSvg = `<i class="ph ph-cloud-warning file-icon" style="font-size: 28px;"></i>`;
+        actionSvg = `
+          <div class="action-btn" onclick="removeFile('${element.id}')">
+            <i class="ph-bold ph-trash" style="font-size: 20px; color: #737373;"></i>
+          </div>`;
+      }
+
+      element.className = `status-item ${stateClass}`;
+      element.innerHTML = `
+        <div style="position: relative; margin-top: 2px;">
+          ${iconSvg}
+        </div>
+        <div class="status-content">
+          <div class="status-header">
+            <span class="file-name">${name}</span>
+            <span class="file-size">${subText}</span>
+          </div>
+          <div class="progress-wrapper">
+            <div class="progress-track">
+              <div class="progress-fill" style="width: ${progress}%;"></div>
+            </div>
+            <span class="progress-text">${progress}%</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; justify-content: center; height: 100%;">
+          ${actionSvg}
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

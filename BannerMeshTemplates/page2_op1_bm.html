@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enter Your Site & Company Details</title>
+  
+  <!-- Link all required fonts from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Merienda+One&family=Merriweather&family=Oswald&family=Oxanium&family=Passion+One&family=Poppins&family=Roboto+Condensed&display=swap" rel="stylesheet">
+  
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <style>
+    /* Basic reset and centering */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 96px;
+      min-height: 100vh;
+      background-color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+    }
+
+    /* --- Header Styles --- */
+    .main-header {
+      width: 100%;
+      height: 96px;
+      border-bottom: 1px solid #E5E5E5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      padding: 0 20px;
+      margin-bottom: 64px; /* Add margin below the header */
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1216px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-logo {
+      width: 201px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .header-title {
+      color: #171717;
+      font-size: 18px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600; /* Semibold */
+      text-transform: uppercase; /* Capslock */
+      letter-spacing: 0.24em; /* 24% letter spacing (equivalent to 4.32px on 18px font) */
+      text-align: center;
+      word-wrap: break-word;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* --- Stepper & Top Content Styles --- */
+    .onboarding-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      padding: 0 20px;
+      max-width: 700px; 
+    }
+
+    .title {
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 38px;
+      margin: 0;
+    }
+
+    .stepper-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stepper-line {
+      position: absolute;
+      top: 50%;
+      left: 30px;
+      right: 30px;
+      transform: translateY(-50%);
+      border-top: 2px dashed #D4D4D4; 
+      z-index: 1;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      gap: 60px; 
+      position: relative;
+      z-index: 2;
+    }
+
+    .step {
+      width: 60px; 
+      height: 60px; 
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px; 
+      font-weight: 600;
+      background-color: #ffffff;
+    }
+
+    .step.active {
+      background-color: #F0FDF4;
+      color: #15803D;
+      border: 2px solid #15803D; 
+    }
+
+    .step.inactive {
+      background-color: #FAFAFA; 
+      color: #525252;
+      border: 2px solid #E5E5E5; 
+    }
+
+    .description {
+      color: #525252;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      margin: 0;
+    }
+
+    /* --- Form Styles --- */
+    .form-container {
+      margin-top: 64px; /* Exact 64px gap from description */
+      width: 100%;
+      max-width: 432px; /* Maximum width 432px */
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* 20px gap between fields */
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+      position: relative;
+    }
+
+    .field-label {
+      color: #404040;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+    }
+
+    .field-label .req {
+      color: #EF4444;
+    }
+
+    .input-field {
+      width: 100%;
+      height: 44px; /* Fixed height for inputs */
+      padding: 10px 14px;
+      background: #ffffff;
+      border: 1px solid #D4D4D4;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      color: #171717;
+      outline: none;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      transition: border-color 0.2s;
+    }
+
+    .input-field::placeholder {
+      color: #737373;
+    }
+
+    .input-field:focus {
+      border-color: #a3a3a3;
+    }
+
+    textarea.input-field {
+      height: 128px; /* Fixed height for textarea */
+      min-height: 128px;
+      resize: vertical;
+    }
+
+    .error-text {
+      color: #B91C1C; /* Red color for error */
+      font-size: 12px;
+      line-height: 18px;
+      margin-top: 0;
+      display: none; /* Hidden by default */
+    }
+
+    .row-2-col {
+      display: flex;
+      gap: 20px; /* 20px gap for 2 columns */
+      width: 100%;
+    }
+
+    .col {
+      flex: 1; /* Automatically takes exactly 206px when parent is 432px with 20px gap */
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* Checkbox Group */
+    .checkbox-row {
+      display: flex;
+      align-items: center; /* Fixed align-items to center */
+      gap: 20px;
+      height: 44px; /* Matches input height to align side-by-side perfectly */
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #404040;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap; /* Prevents inline checkboxes from breaking lines */
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #332900;
+      border-radius: 4px;
+      background-color: #ffffff;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .checkbox-label input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 8px;
+      border-right: 2px solid #332900;
+      border-bottom: 2px solid #332900;
+      transform: rotate(45deg);
+      top: 1px;
+    }
+
+    .hint-text {
+      color: #737373;
+      font-size: 12px;
+      line-height: 18px;
+      margin-top: 4px;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 4px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    .btn-primary {
+      background: #FFCC00;
+      border: 1px solid #FFCC00;
+      color: #332900;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #332900;
+      color: #332900;
+    }
+
+    .footer-text {
+      color: #737373;
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    /* --- Custom Color Picker Button & Popup --- */
+    .color-picker-wrapper {
+      position: relative; 
+      display: inline-block;
+    }
+
+    .color-btn {
+      width: 44px;
+      height: 44px;
+      background: #ffffff;
+      border: 1px solid #D4D4D4;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .color-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #9751F2; /* Default color */
+    }
+
+    .color-picker-popup {
+      position: absolute;
+      top: 0;
+      left: 64px; /* 44px button width + 20px gap */
+      z-index: 100; /* High z-index to float over below inputs */
+      display: none; /* Hidden by default */
+    }
+    
+    .color-picker-popup.active {
+      display: inline-flex;
+    }
+
+    /* --- Custom Font Dropdown --- */
+    .custom-select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .custom-select-trigger {
+      width: 100%;
+      height: 44px;
+      padding: 10px 14px;
+      background: #ffffff;
+      border: 1px solid #D4D4D4;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      user-select: none;
+    }
+
+    .trigger-content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding-right: 12px;
+      align-items: center;
+    }
+
+    .trigger-font-name {
+      font-size: 16px;
+      color: #171717;
+    }
+    
+    .trigger-font-name span {
+      color: #A3A3A3;
+    }
+
+    .trigger-sample {
+      font-size: 16px;
+      color: #171717;
+    }
+
+    .custom-select-options {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #E5E5E5;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.03), 0px 12px 16px -4px rgba(0, 0, 0, 0.08);
+      z-index: 10;
+      display: none; /* Hidden by default */
+      flex-direction: column;
+      padding: 4px 0;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    .custom-select-options.active {
+      display: flex;
+    }
+
+    .custom-option {
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 16px;
+      color: #171717;
+    }
+
+    .custom-option:hover {
+      background: #FAFAFA;
+    }
+    
+    .custom-option.selected {
+      background: #FAFAFA;
+    }
+
+    .custom-option .check-icon {
+      font-size: 16px;
+      color: #171717;
+      opacity: 0;
+    }
+    
+    .custom-option.selected .check-icon {
+      opacity: 1;
+    }
+
+    /* Style for the trigger caret icon */
+    .custom-select-trigger i {
+      font-size: 20px;
+      color: #525252;
+    }
+
+    .opt-content {
+      display: flex;
+      justify-content: space-between;
+      flex: 1;
+      padding-right: 12px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1240px) {
+      
+      .header-title {
+        text-align: right;
+      }
+    }
+
+    @media (max-width: 630px) {
+      
+      .header-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .header-title {
+        text-align: center;
+        font-size: 16px;
+      }
+      .main-header {
+        height: auto;
+        padding: 20px;
+      }
+    }
+
+    .upload-logo-btn {
+      text-decoration: none;
+      color: #332900;
+    }
+  </style>
+</head>
+<body>
+
+   <!-- Header -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="../index.html">
+          <img src="https://mlqlsvcjggrx.i.optimole.com/w:201/h:42/q:mauto/f:best/ig:avif/https://builderssigns.com.au/wp-content/uploads/2026/06/Dark-and-Yellow-Landscape-2.svg" alt="Builders Signs Logo">
+        </a>  
+      </div>
+      <div class="header-title">Design Your Banner</div>
+    </div>
+  </header>
+
+  <!-- Top Stepper Content -->
+  <div class="onboarding-container">
+    <h1 class="title">Enter Your Site &<br>Company Details</h1>
+    <div class="stepper-wrapper">
+      <div class="stepper-line"></div>
+      <div class="steps">
+        <div class="step active">01</div>
+        <div class="step active">02</div>
+        <div class="step inactive">03</div>
+      </div>
+    </div>
+    <p class="description">
+      Fill in your site details below so our pre-press team has<br>
+      everything needed to build and email your print proof.
+    </p>
+  </div>
+
+  <!-- Main Form Container -->
+  <div class="form-container">
+    
+    <div class="field-group">
+      <label class="field-label">Your Email</label>
+      <input type="email" id="emailInput" class="input-field" placeholder="johndoe@gmail.com">
+      <div class="error-text" id="emailError">Invalid Email Address</div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Order Number</label>
+      <input type="text" class="input-field" placeholder="003213">
+    </div>
+
+    <!-- Background Color with Custom Picker -->
+    <div class="field-group">
+      <label class="field-label">Background Color</label>
+      
+      <div class="color-picker-wrapper">
+        <button class="color-btn" id="colorToggleBtn" type="button">
+          <span class="color-circle"></span>
+        </button>
+
+        <!-- Fully Functional Color Picker Layout -->
+        <div class="color-picker-popup" id="colorPicker">
+          <div style="width: 290.70px; padding: 12.24px; position: relative; background: white; box-shadow: 0px 0px 38px rgba(0, 0, 0, 0.12); border-radius: 6.12px; outline: 1.22px #E0E0E0 solid; outline-offset: -1.22px; flex-direction: column; justify-content: center; align-items: center; gap: 12.24px; display: inline-flex">
+            
+            <!-- Main Interactive Color Gradient Box -->
+            <div id="pickerArea" style="width: 266.22px; height: 266.22px; background: #7000FF; border-radius: 6.12px; overflow: hidden; position: relative; cursor: crosshair;">
+              <div style="position: absolute; inset: 0; background: linear-gradient(to right, #fff, rgba(255,255,255,0)); pointer-events: none;"></div>
+              <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, #000); pointer-events: none;"></div>
+              <div id="pickerHandle" style="width: 15.3px; height: 15.3px; border: 1.53px solid white; border-radius: 50%; position: absolute; transform: translate(-50%, -50%); pointer-events: none; box-shadow: 0px 0px 7.65px rgba(0, 0, 0, 0.70);"></div>
+            </div>
+
+            <!-- Hue Slider -->
+            <div style="width: 263.16px; justify-content: space-between; align-items: center; display: inline-flex">
+              <div style="width: 100%; align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+                <div id="hueSliderTrack" style="width: 100%; height: 15.30px; position: relative; background: linear-gradient(90deg, #FF0000 0%, #FF6B00 15%, #FFE600 25%, #24FF00 40%, #00FFF0 52%, #0029FF 66%, rgba(142.80, 0, 255, 0.78) 73%, #FF00E5 87%, #FF0000 100%); border-radius: 765.01px; cursor: pointer;">
+                  <div id="hueHandle" style="width: 15.30px; height: 15.30px; position: absolute; top: 0px; transform: translateX(-50%); background: #9058D7; box-shadow: 0px 0px 7.65px rgba(0, 0, 0, 0.70); border-radius: 9999px; outline: 1.53px white solid; pointer-events: none;"></div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Inputs for HEX and RGB -->
+            <div style="justify-content: center; align-items: center; gap: 12.24px; display: inline-flex; width: 100%;">
+              <div style="width: 90.27px; flex-direction: column; gap: 6.12px; display: inline-flex">
+                <div style="text-align: center; color: black; font-size: 12.24px; font-weight: 500;">HEX</div>
+                <input type="text" id="hexInput" value="#9751F2" style="padding: 6.12px 0; border-radius: 6.12px; border: 1.22px solid #EEEEEE; text-align: center; width: 100%; font-size: 15.30px; outline: none; font-family: 'Inter', sans-serif; color: #212121;">
+              </div>
+              <div style="display: flex;">
+                <div style="width: 53.55px; flex-direction: column; gap: 6.12px; display: inline-flex">
+                  <div style="text-align: center; color: black; font-size: 12.24px; font-weight: 500;">R</div>
+                  <input type="text" id="rInput" value="151" style="padding: 6.12px 0; border: 1.22px solid #EEEEEE; border-right: none; border-radius: 6.12px 0 0 6.12px; text-align: center; width: 100%; font-size: 15.30px; outline: none; font-family: 'Inter', sans-serif; color: #212121;">
+                </div>
+                <div style="width: 53.55px; flex-direction: column; gap: 6.12px; display: inline-flex">
+                  <div style="text-align: center; color: black; font-size: 12.24px; font-weight: 500;">G</div>
+                  <input type="text" id="gInput" value="81" style="padding: 6.12px 0; border: 1.22px solid #EEEEEE; border-right: none; text-align: center; width: 100%; font-size: 15.30px; outline: none; font-family: 'Inter', sans-serif; color: #212121;">
+                </div>
+                <div style="width: 53.55px; flex-direction: column; gap: 6.12px; display: inline-flex">
+                  <div style="text-align: center; color: black; font-size: 12.24px; font-weight: 500;">B</div>
+                  <input type="text" id="bInput" value="242" style="padding: 6.12px 0; border: 1.22px solid #EEEEEE; border-radius: 0 6.12px 6.12px 0; text-align: center; width: 100%; font-size: 15.30px; outline: none; font-family: 'Inter', sans-serif; color: #212121;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone Number & Builders No. (2 Columns) 
+    <div class="row-2-col">
+      <div class="col">
+        <label class="field-label">Phone Number <span class="req">*</span></label>
+        <input type="text" class="input-field" placeholder="1800 574 155">
+      </div>
+      <div class="col">
+        <label class="field-label">Builders No. <span class="req">*</span></label>
+        <input type="text" class="input-field" placeholder="123456C">
+      </div>
+    </div>
+
+     Social Media (Input left, Checkboxes right) 
+    <div class="row-2-col" style="align-items: flex-end;">
+      <div class="col" style="flex: none; width: 206px;">
+        <label class="field-label">Social Media <span class="req">*</span></label>
+        <input type="text" class="input-field" placeholder="@BuildersSigns">
+      </div>
+      <div class="checkbox-row" style="flex: 1; gap: 18px; flex-direction: row;">
+        <label class="checkbox-label">
+          <input type="checkbox" checked> Facebook
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" checked> Instagram
+        </label>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">QR Code Destination Link <span class="req">*</span></label>
+      <input type="text" class="input-field" placeholder="www.builderssigns.com.au">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Select your Association<span class="req">*</span></label>
+      <div class="checkbox-row" style="height: auto; margin-bottom: 2px;">
+        <label class="checkbox-label">
+          <input type="checkbox" checked> Master Builders
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" checked> HIA
+        </label>
+      </div>
+      <div class="hint-text">Have a different association? Upload it along with your logo below.</div>
+    </div> -->
+
+    <!-- Custom Font Select Dropdown -->
+    <div class="field-group">
+      <label class="field-label">Choose Font</label>
+      <div class="custom-select-wrapper" id="fontDropdown">
+        <div class="custom-select-trigger" id="fontTrigger">
+          <div class="trigger-content" id="triggerContent">
+            <div class="trigger-font-name" style="font-family: 'Inter'">Inter <span>(Default)</span></div>
+            <div class="trigger-sample" style="font-family: 'Inter'">Your Company</div>
+          </div>
+          <i class="ph-bold ph-caret-down"></i>
+        </div>
+        
+        <div class="custom-select-options" id="fontOptions">
+          <!-- Dropdown Option Items -->
+          <div class="custom-option selected" data-font="Inter" data-name="Inter <span>(Default)</span>">
+            <div class="opt-content">
+              <span style="font-family: 'Inter'">Inter <span style="color:#A3A3A3">(Default)</span></span>
+              <span style="font-family: 'Inter'">Your Company</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+          
+          <div class="custom-option" data-font="Poppins" data-name="Poppins">
+            <div class="opt-content">
+              <span style="font-family: 'Poppins'">Poppins</span>
+              <span style="font-family: 'Poppins'">Your Company</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+
+          <div class="custom-option" data-font="Roboto Condensed" data-name="Roboto Condensed">
+            <div class="opt-content">
+              <span style="font-family: 'Roboto Condensed'">Roboto Condensed</span>
+              <span style="font-family: 'Roboto Condensed'">Your Company</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+
+          <div class="custom-option" data-font="Merienda One" data-name="Merienda One">
+            <div class="opt-content">
+              <span style="font-family: 'Merienda One'">Merienda One</span>
+              <span style="font-family: 'Merienda One'">Your Company</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+
+          <div class="custom-option" data-font="Passion One" data-name="Passion One">
+            <div class="opt-content">
+              <span style="font-family: 'Passion One'">Passion One</span>
+              <span style="font-family: 'Passion One'">Your Company</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+
+          <div class="custom-option" data-font="Oswald" data-name="Oswald">
+            <div class="opt-content">
+              <span style="font-family: 'Oswald'">Oswald</span>
+              <span style="font-family: 'Oswald'">Your Company</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+
+          <div class="custom-option" data-font="Merriweather" data-name="Merriweather">
+            <div class="opt-content">
+              <span style="font-family: 'Merriweather'">Merriweather</span>
+              <span style="font-family: 'Merriweather'">Your Company</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+
+          <div class="custom-option" data-font="Anton" data-name="Anton">
+            <div class="opt-content">
+              <span style="font-family: 'Anton'">Anton</span>
+              <span style="font-family: 'Anton'">Your Company</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+
+          <div class="custom-option" data-font="Bebas Neue" data-name="Bebas Neue">
+            <div class="opt-content">
+              <span style="font-family: 'Bebas Neue'">Bebas Neue</span>
+              <span style="font-family: 'Bebas Neue'">Your Company</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+          
+          <div class="custom-option" data-font="Oxanium" data-name="Oxanium">
+            <div class="opt-content">
+              <span style="font-family: 'Oxanium'">Oxanium</span>
+              <span style="font-family: 'Oxanium'">Your Company</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+
+          <div class="custom-option" data-font="Inter" data-name="Can't find your font? - Type it below">
+            <div class="opt-content">
+              <span style="font-family: 'Inter'">Can't find your font? - Type it below</span>
+            </div>
+            <i class="ph-bold ph-check check-icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Can't find your brand font? Tell us what it is</label>
+      <input type="text" class="input-field" placeholder="Offside Font Family - Regular and Bold font">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Comment (Optional)</label>
+      <textarea class="input-field"></textarea>
+    </div>
+
+    <!-- Form Buttons -->
+    <div class="btn-row">
+      <a class="upload-logo-btn" href="page3_bm.html"><button class="btn btn-primary">Upload Logo Now</button></a>
+      <a class="upload-logo-btn" href="Thank_You_UploadLater.html"><button class="btn btn-outline">Upload Logo Later</button></a>
+    </div>
+
+    <div class="footer-text">
+      Once we have your logo, your design will be with you within 4 hours. We’ll include an estimated production and delivery timeline with the proof we send for approval.
+    </div>
+
+  </div>
+
+  <!-- Vanilla Javascript for Functionality -->
+  <script>
+    // --- Email Validation Functionality ---
+    const emailInput = document.getElementById('emailInput');
+    const emailError = document.getElementById('emailError');
+
+    emailInput.addEventListener('input', function() {
+      const email = this.value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (email.length > 0 && !emailRegex.test(email)) {
+        emailError.style.display = 'block';
+      } else {
+        emailError.style.display = 'none';
+      }
+    });
+
+    // --- Color Picker Functionality ---
+    const colorBtn = document.getElementById('colorToggleBtn');
+    const colorPicker = document.getElementById('colorPicker');
+
+    colorBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      colorPicker.classList.toggle('active');
+    });
+
+    // Color conversion utilities and interactive state
+    let hsv = { h: 266, s: 0.67, v: 0.95 }; // Default #9751F2
+
+    function hsvToRgb(h, s, v) {
+      let r, g, b;
+      let i = Math.floor(h / 60);
+      let f = h / 60 - i;
+      let p = v * (1 - s);
+      let q = v * (1 - f * s);
+      let t = v * (1 - (1 - f) * s);
+      switch (i % 6) {
+        case 0: r = v, g = t, b = p; break;
+        case 1: r = q, g = v, b = p; break;
+        case 2: r = p, g = v, b = t; break;
+        case 3: r = p, g = q, b = v; break;
+        case 4: r = t, g = p, b = v; break;
+        case 5: r = v, g = p, b = q; break;
+      }
+      return {
+        r: Math.round(r * 255),
+        g: Math.round(g * 255),
+        b: Math.round(b * 255)
+      };
+    }
+
+    function rgbToHsv(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      let max = Math.max(r, g, b), min = Math.min(r, g, b);
+      let h, s, v = max;
+      let d = max - min;
+      s = max === 0 ? 0 : d / max;
+      if (max === min) {
+        h = 0;
+      } else {
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+      return { h: h * 360, s: s, v: v };
+    }
+
+    function rgbToHex(r, g, b) {
+      return "#" + [r, g, b].map(x => {
+        const hex = x.toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+      }).join("").toUpperCase();
+    }
+
+    function hexToRgb(hex) {
+      let cleanHex = hex.replace("#", "");
+      if (cleanHex.length === 3) {
+        cleanHex = cleanHex.split("").map(c => c + c).join("");
+      }
+      let num = parseInt(cleanHex, 16);
+      if (isNaN(num)) return null;
+      return {
+        r: (num >> 16) & 255,
+        g: (num >> 8) & 255,
+        b: num & 255
+      };
+    }
+
+    const pickerArea = document.getElementById('pickerArea');
+    const pickerHandle = document.getElementById('pickerHandle');
+    const hueSliderTrack = document.getElementById('hueSliderTrack');
+    const hueHandle = document.getElementById('hueHandle');
+    
+    const colorCircle = document.querySelector('.color-circle');
+    
+    const hexInput = document.getElementById('hexInput');
+    const rInput = document.getElementById('rInput');
+    const gInput = document.getElementById('gInput');
+    const bInput = document.getElementById('bInput');
+
+    let isDraggingPicker = false;
+    let isDraggingHue = false;
+
+    function updateUIFromHsv() {
+      const rgb = hsvToRgb(hsv.h, hsv.s, hsv.v);
+      const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+      const pureHueRgb = hsvToRgb(hsv.h, 1, 1);
+
+      // Update button preview circle
+      colorCircle.style.background = hex;
+
+      // Update input fields (only if the user isn't currently typing in them)
+      if (document.activeElement !== hexInput) hexInput.value = hex;
+      if (document.activeElement !== rInput) rInput.value = rgb.r;
+      if (document.activeElement !== gInput) gInput.value = rgb.g;
+      if (document.activeElement !== bInput) bInput.value = rgb.b;
+
+      // Update the main color box gradient base
+      pickerArea.style.background = `rgb(${pureHueRgb.r}, ${pureHueRgb.g}, ${pureHueRgb.b})`;
+      
+      // Update the hue handle inner color to match the hue
+      hueHandle.style.background = `rgb(${pureHueRgb.r}, ${pureHueRgb.g}, ${pureHueRgb.b})`;
+
+      // Physically move the slider handles based on HSV values
+      const handleX = hsv.s * 266.22;
+      const handleY = (1 - hsv.v) * 266.22;
+      pickerHandle.style.left = `${handleX}px`;
+      pickerHandle.style.top = `${handleY}px`;
+
+      const huePercent = hsv.h / 360;
+      hueHandle.style.left = `${huePercent * 100}%`;
+    }
+
+    // --- Mouse Drag Events ---
+    pickerArea.addEventListener('mousedown', (e) => {
+      isDraggingPicker = true;
+      handlePickerMove(e);
+    });
+
+    hueSliderTrack.addEventListener('mousedown', (e) => {
+      isDraggingHue = true;
+      handleHueMove(e);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDraggingPicker) handlePickerMove(e);
+      if (isDraggingHue) handleHueMove(e);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDraggingPicker = false;
+      isDraggingHue = false;
+    });
+
+    function handlePickerMove(e) {
+      const rect = pickerArea.getBoundingClientRect();
+      let x = e.clientX - rect.left;
+      let y = e.clientY - rect.top;
+      x = Math.max(0, Math.min(x, rect.width));
+      y = Math.max(0, Math.min(y, rect.height));
+
+      hsv.s = x / rect.width;
+      hsv.v = 1 - (y / rect.height);
+      updateUIFromHsv();
+    }
+
+    function handleHueMove(e) {
+      const rect = hueSliderTrack.getBoundingClientRect();
+      let x = e.clientX - rect.left;
+      x = Math.max(0, Math.min(x, rect.width));
+      let percent = x / rect.width;
+      hsv.h = percent * 360;
+      updateUIFromHsv();
+    }
+
+    // --- Typing Input Events ---
+    hexInput.addEventListener('input', () => {
+      let val = hexInput.value.trim();
+      if (!val.startsWith('#')) val = '#' + val;
+      const rgb = hexToRgb(val);
+      if (rgb) {
+        hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
+        updateUIFromHsv();
+      }
+    });
+
+    function handleRgbInput() {
+      let r = parseInt(rInput.value) || 0;
+      let g = parseInt(gInput.value) || 0;
+      let b = parseInt(bInput.value) || 0;
+      r = Math.max(0, Math.min(255, r));
+      g = Math.max(0, Math.min(255, g));
+      b = Math.max(0, Math.min(255, b));
+      hsv = rgbToHsv(r, g, b);
+      updateUIFromHsv();
+    }
+
+    rInput.addEventListener('input', handleRgbInput);
+    gInput.addEventListener('input', handleRgbInput);
+    bInput.addEventListener('input', handleRgbInput);
+
+    // Initial load sync
+    updateUIFromHsv();
+
+    // --- Custom Font Dropdown Functionality ---
+    const fontDropdown = document.getElementById('fontDropdown');
+    const fontTrigger = document.getElementById('fontTrigger');
+    const fontOptions = document.getElementById('fontOptions');
+    const triggerContent = document.getElementById('triggerContent');
+    const options = document.querySelectorAll('.custom-option');
+
+    fontTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fontOptions.classList.toggle('active');
+    });
+
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        options.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        
+        const selectedFontFamily = option.getAttribute('data-font');
+        const selectedFontNameHTML = option.getAttribute('data-name');
+        
+        if(selectedFontNameHTML === "Can't find your font? - Type it below") {
+            triggerContent.innerHTML = `
+              <div class="trigger-font-name" style="font-family: '${selectedFontFamily}'">${selectedFontNameHTML}</div>
+            `;
+        } else {
+            triggerContent.innerHTML = `
+              <div class="trigger-font-name" style="font-family: '${selectedFontFamily}'">${selectedFontNameHTML}</div>
+              <div class="trigger-sample" style="font-family: '${selectedFontFamily}'">Your Company</div>
+            `;
+        }
+        
+        fontOptions.classList.remove('active');
+      });
+    });
+
+    // --- Global Click Outside Listener ---
+    document.addEventListener('click', (e) => {
+      if (!colorPicker.contains(e.target) && e.target !== colorBtn) {
+        colorPicker.classList.remove('active');
+      }
+      
+      if (!fontDropdown.contains(e.target)) {
+        fontOptions.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

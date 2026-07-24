@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Product</title>
+  
+  <!-- Link Inter font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Basic reset and centering */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 96px;
+      min-height: 100vh;
+      background-color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* --- Header Styles --- */
+    .main-header {
+      width: 100%;
+      height: 96px;
+      border-bottom: 1px solid #E5E5E5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      padding: 0 20px;
+      margin-bottom: 64px;
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1216px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-logo {
+      width: 201px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* --- Main Container --- */
+    .onboarding-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px; /* Space between title and the cards grid */
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    /* Title Styling */
+    .title {
+      color: #171717;
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 38px;
+      margin: 0;
+    }
+
+    /* --- Cards Grid Layout --- */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 inline columns */
+      gap: 32px; /* 32px gap between columns */
+      width: 100%;
+      max-width: 1216px; /* Total combined max width */
+    }
+
+    /* Card Styling */
+    .card-item {
+      background-color: #E5E5E5; /* Solid gray background */
+      border-radius: 16px;
+      padding: 40px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 220px;
+      text-decoration: none; /* In case it's used as a link */
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .card-item:hover {
+      background-color: #D4D4D4; /* Slightly darker gray on hover */
+      transform: translateY(-4px);
+    }
+
+    .card-text {
+      color: #171717; /* Black text */
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 28px;
+      margin: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 960px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns on tablets */
+      }
+    }
+
+    @media (max-width: 630px) {
+      .main-header {
+        height: auto;
+        padding: 20px;
+        margin-bottom: 40px;
+      }
+      .title {
+        font-size: 24px;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr; /* Switch to 1 column on mobile */
+      }
+      .card-item {
+        min-height: 180px; /* Slightly shorter on mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <img src="https://mlqlsvcjggrx.i.optimole.com/w:201/h:42/q:mauto/f:best/ig:avif/https://builderssigns.com.au/wp-content/uploads/2026/06/Dark-and-Yellow-Landscape-2.svg" alt="Builders Signs Logo">
+      </div>
+    </div>
+  </header>
+
+  <!-- Top Content -->
+  <div class="onboarding-container">
+    <h1 class="title">Select Product Templates</h1>
+
+    <!-- 3 Column Cards Grid -->
+    <div class="cards-grid">
+      
+      <!-- Card 1 -->
+      <a href="BannerMeshTemplates/page1_bm.html" class="card-item">
+        <h2 class="card-text">Banner Mesh Templates</h2>
+      </a>
+
+     
+      <!-- Card 2 -->
+      <a href="BrandingCorfluteTemplates/page1_bc.html" class="card-item">
+        <h2 class="card-text">Branding Corflute Templates</h2>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="#" class="card-item">
+        <h2 class="card-text">Compliance Corflute Templates</h2>
+      </a>
+
+    </div>
+  </div>
+
+</body>
+</html>

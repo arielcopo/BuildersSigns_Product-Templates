@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Your Branding Corflute Layout</title>
+  
+  <!-- Link Inter font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <style>
+    /* Basic reset and centering */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 96px;
+      min-height: 100vh;
+      background-color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* --- Header Styles --- */
+    .main-header {
+      width: 100%;
+      height: 96px;
+      border-bottom: 1px solid #E5E5E5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      padding: 0 20px;
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1216px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-logo {
+      width: 201px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .header-title {
+      color: #171717;
+      font-size: 18px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600; /* Semibold */
+      text-transform: uppercase; /* Capslock */
+      letter-spacing: 0.24em; /* 24% letter spacing (equivalent to 4.32px on 18px font) */
+      text-align: center;
+      word-wrap: break-word;
+    }
+
+    /* Main Header Container */
+    .onboarding-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      padding: 0 20px;
+      max-width: 700px;
+      margin-top: 64px; /* 64px gap below header */
+      margin-bottom: 6px; /* Exactly 6px gap to the first badge below */
+    }
+
+    /* Title Styling */
+    .title {
+      color: #171717;
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 38px;
+      margin: 0;
+    }
+
+    /* Progress/Stepper Layout */
+    .stepper-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stepper-line {
+      position: absolute;
+      top: 50%;
+      left: 30px;
+      right: 30px;
+      transform: translateY(-50%);
+      border-top: 2px dashed #D4D4D4;
+      z-index: 1;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      gap: 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step {
+      width: 60px;
+      height: 60px;
+      box-sizing: border-box; 
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: normal;
+      background-color: #ffffff;
+    }
+
+    .step.active {
+      background-color: #F0FDF4;
+      color: #15803D;
+      border: 2px solid #15803D;
+    }
+
+    .step.inactive {
+      background-color: #FAFAFA; 
+      color: #525252;
+      border: 2px solid #E5E5E5; 
+    }
+
+    .description {
+      color: #525252;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      margin: 0 0 64px 0;
+    }
+
+    /* --- Template Section Wrapper --- */
+    .template-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 96px; /* 96px gap between sections */
+    }
+
+    .template-section:last-child {
+      margin-bottom: 0;
+    }
+
+    /* --- Divider Styles --- */
+    .divider-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 1216px;
+      gap: 14px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .divider-line {
+      flex-grow: 1;
+      height: 1px;
+    }
+
+    .divider-line.left {
+      background: linear-gradient(to right, rgba(212, 212, 212, 0) 0%, #D4D4D4 100%);
+    }
+
+    .divider-line.right {
+      background: linear-gradient(to left, rgba(212, 212, 212, 0) 0%, #D4D4D4 100%);
+    }
+
+    .divider-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 4px 10px 4px 12px;
+      background: #FAFAFA;
+      border-radius: 16px;
+      border: 1px solid #E5E5E5;
+      color: #404040;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      line-height: 20px;
+      white-space: nowrap;
+    }
+
+    .divider-badge i {
+      font-size: 12px;
+      color: #404040;
+    }
+
+    /* --- Cards Grid Layout (Landscape - 2x2 Grid) --- */
+    .cards-grid-landscape {
+      display: grid;
+      grid-template-columns: repeat(2, 592px);
+      gap: 32px;
+      margin-top: 32px;
+      max-width: 1216px;
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+      justify-content: center;
+    }
+
+    /* --- Cards Grid Layout (Portrait - 3 Columns) --- */
+    .cards-grid-portrait {
+      display: grid;
+      grid-template-columns: repeat(3, 384px);
+      gap: 32px;
+      margin-top: 32px;
+      max-width: 1216px;
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+      justify-content: center;
+    }
+
+    /* Base Card Container */
+    .card-item {
+      width: 100%;
+      background: #F5F5F7;
+      border-radius: 16px;
+      border: 1px solid #E5E5E5;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Landscape Card Settings */
+    .card-item.landscape {
+      max-width: 592px;
+      padding: 10px 10px 20px 10px;
+    }
+    
+    .card-item.landscape .card-image {
+      max-width: 572px;
+    }
+
+    /* Portrait Card Settings */
+    .card-item.portrait {
+      max-width: 384px;
+      padding: 10px 10px 20px 10px;
+    }
+    
+    .card-item.portrait .card-image {
+      max-width: 364px;
+    }
+
+    /* Global Card Image Settings */
+    .card-image {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: contain;
+      display: block;
+      background-color: #ffffff;
+    }
+
+    /* Card Controls Footer */
+    .card-footer {
+      width: 100%;
+      margin-top: 20px;
+      padding-left: 16px;
+      padding-right: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .zoom-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .zoom-icon i {
+      font-size: 36px;
+      color: #332900;
+    }
+
+    .zoom-icon:hover {
+      transform: scale(1.08);
+    }
+
+    .use-btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid #332900;
+      color: #332900;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      line-height: 20px;
+      background: transparent;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .use-btn:hover {
+      background-color: rgba(51, 41, 0, 0.05);
+    }
+
+    /* --- FULLSCREEN ZOOM MODAL OVERLAY --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(180deg, rgba(223, 223, 223, 0.70) 0%, rgba(186, 186, 186, 0.70) 54%, rgba(230, 230, 230, 0.70) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease-in-out;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1164px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #171717;
+      transition: transform 0.2s ease;
+    }
+
+    .modal-close-btn i {
+      font-size: 24px;
+      color: #171717;
+    }
+
+    .modal-close-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .modal-image {
+      width: 100%;
+      max-width: 1164px;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 20px rgba(0, 0, 0, 0.12);
+      display: block;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1240px) {
+      .cards-grid-landscape {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .cards-grid-portrait {
+        grid-template-columns: repeat(2, 384px);
+        justify-items: center;
+      }
+      .header-title {
+        text-align: right;
+      }
+    }
+
+    @media (max-width: 840px) {
+      .cards-grid-portrait {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 630px) {
+      .card-item {
+        height: auto;
+      }
+      .modal-close-btn {
+        margin-bottom: 8px;
+      }
+      .header-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .header-title {
+        text-align: center;
+        font-size: 16px;
+      }
+      .main-header {
+        height: auto;
+        padding: 20px;
+      }
+    }
+
+    .use-this-template {
+      text-decoration: none;
+      color: #332900;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="../index.html">
+          <img src="https://mlqlsvcjggrx.i.optimole.com/w:201/h:42/q:mauto/f:best/ig:avif/https://builderssigns.com.au/wp-content/uploads/2026/06/Dark-and-Yellow-Landscape-2.svg" alt="Builders Signs Logo">
+        </a>  
+      </div>
+      <div class="header-title">Design Your Corflute</div>
+    </div>
+  </header>
+
+  <!-- Top Content -->
+  <div class="onboarding-container">
+    <h1 class="title">Select Your Branding <br>Corflute Layout</h1>
+
+    <!-- Progress Steps -->
+    <div class="stepper-wrapper">
+      <div class="stepper-line"></div>
+      <div class="steps">
+        <div class="step active">01</div>
+        <div class="step inactive">02</div>
+        <div class="step inactive">03</div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <p class="description">
+      Choose a design template to start. You’ll customize all <br> text, colors, and company logo in the next step.
+    </p>
+  </div>
+
+
+  <!-- SECTION 1: Logo + Contact/Builders No. (Portrait) -->
+  <div class="template-section">
+    <div class="divider-container">
+      <div class="divider-line left"></div>
+      <div class="divider-badge">
+        <i class="ph-bold ph-arrow-down"></i>
+        <span>Logo + Contact/Builders No. (Portrait)</span>
+      </div>
+      <div class="divider-line right"></div>
+    </div>
+
+    <div class="cards-grid-portrait">
+      <!-- Portrait Card 1 -->
+      <div class="card-item portrait">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_1-Branding-Corflute-Logo-Contact-Builders-No-Portrait.jpg" alt="Logo + Contact/Builders No. Portrait 1">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op2_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+
+      <!-- Portrait Card 2 -->
+      <div class="card-item portrait">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_2-Branding-Corflute-Logo-Contact-Builders-No-Portrait.jpg" alt="Logo + Contact/Builders No. Portrait 2">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op2_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+
+      <!-- Portrait Card 3 -->
+      <div class="card-item portrait">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_3-Branding-Corflute-Logo-Contact-Builders-No-Portrait.jpg" alt="Logo + Contact/Builders No. Portrait 3">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op2_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECTION 2: Logo + Contact/Builders No. + Social Media/Association + QR Code (Portrait) -->
+  <div class="template-section">
+    <div class="divider-container">
+      <div class="divider-line left"></div>
+      <div class="divider-badge">
+        <i class="ph-bold ph-arrow-down"></i>
+        <span>Logo + Contact/Builders No. + Social Media/Association + QR Code (Portrait)</span>
+      </div>
+      <div class="divider-line right"></div>
+    </div>
+
+    <div class="cards-grid-portrait">
+      <!-- Portrait Card 4 -->
+      <div class="card-item portrait">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_4-Branding-Corflute-Contact-Builders-No.-Social-Media-Association-QR-Code-Portrait.jpg" alt="Full Details Portrait 1">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op3_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+
+      <!-- Portrait Card 5 -->
+      <div class="card-item portrait">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_5-Branding-Corflute-Contact-Builders-No.-Social-Media-Association-QR-Code-Portrait.jpg" alt="Full Details Portrait 2">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op3_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+
+      <!-- Portrait Card 6 -->
+      <div class="card-item portrait">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_6-Branding-Corflute-Contact-Builders-No.-Social-Media-Association-QR-Code-Portrait.jpg" alt="Full Details Portrait 3">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op3_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECTION 3: Logo + Contact/Builders No. (Landscape) -->
+  <div class="template-section">
+    <div class="divider-container">
+      <div class="divider-line left"></div>
+      <div class="divider-badge">
+        <i class="ph-bold ph-arrow-down"></i>
+        <span>Logo + Contact/Builders No. (Landscape)</span>
+      </div>
+      <div class="divider-line right"></div>
+    </div>
+
+    <div class="cards-grid-landscape">
+      <!-- Landscape Card 1 -->
+      <div class="card-item landscape">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_1-Branding-Corflute-Logo-Contact-Builders-No-Landscape.jpg" alt="Logo + Contact/Builders No. Landscape 1">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op2_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+
+      <!-- Landscape Card 2 -->
+      <div class="card-item landscape">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_2-Branding-Corflute-Logo-Contact-Builders-No-Landscape.jpg" alt="Logo + Contact/Builders No. Landscape 2">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op2_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+
+      <!-- Landscape Card 3 -->
+      <div class="card-item landscape">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_3-Branding-Corflute-Logo-Contact-Builders-No-Landscape.jpg" alt="Logo + Contact/Builders No. Landscape 3">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op2_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+
+      <!-- Landscape Card 4 -->
+      <div class="card-item landscape">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_4-Branding-Corflute-Logo-Contact-Builders-No-Landscape.jpg" alt="Logo + Contact/Builders No. Landscape 4">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op2_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECTION 4: Logo + Contact/Builders No. + Social Media/Association + QR Code (Landscape) -->
+  <div class="template-section">
+    <div class="divider-container">
+      <div class="divider-line left"></div>
+      <div class="divider-badge">
+        <i class="ph-bold ph-arrow-down"></i>
+        <span>Logo + Contact/Builders No. + Social Media/Association + QR Code (Landscape)</span>
+      </div>
+      <div class="divider-line right"></div>
+    </div>
+
+    <div class="cards-grid-landscape">
+      <!-- Landscape Card 5 -->
+      <div class="card-item landscape">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_5-Branding-Corflute-Logo-Contact-Builders-No-Social-Media-Association-QR-Code-Landscape.jpg" alt="Full Details Landscape 1">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op3_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+
+      <!-- Landscape Card 6 -->
+      <div class="card-item landscape">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_6-Branding-Corflute-Logo-Contact-Builders-No-Social-Media-Association-QR-Code-Landscape.jpg" alt="Full Details Landscape 2">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op3_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+
+      <!-- Landscape Card 7 -->
+      <div class="card-item landscape">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_7-Branding-Corflute-Logo-Contact-Builders-No-Social-Media-Association-QR-Code-Landscape.jpg" alt="Full Details Landscape 3">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op3_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+
+      <!-- Landscape Card 8 -->
+      <div class="card-item landscape">
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates_8-Branding-Corflute-Logo-Contact-Builders-No-Social-Media-Association-QR-Code-Landscape.jpg" alt="Full Details Landscape 4">
+        <div class="card-footer">
+          <div class="zoom-icon" title="Click to zoom in">
+            <i class="ph ph-magnifying-glass-plus"></i>
+          </div>
+          <a class="use-this-template" href="page2_op3_bc.html"><button class="use-btn"> Use This Template </button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN ZOOM MODAL DIALOG -->
+  <div id="imageModal" class="modal-overlay">
+    <div class="modal-wrapper">
+      <!-- Close Button 'X' -->
+      <button id="modalCloseBtn" class="modal-close-btn" title="Close view">
+        <i class="ph-bold ph-x"></i>
+      </button>
+      <!-- Zoomed Full View Image -->
+      <img id="modalImage" class="modal-image" src="" alt="Full Screen Banner View">
+    </div>
+  </div>
+
+  <!-- JavaScript functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      const closeBtn = document.getElementById('modalCloseBtn');
+      const zoomIcons = document.querySelectorAll('.zoom-icon');
+
+      // Open Modal on zoom icon click for any card
+      zoomIcons.forEach(icon => {
+        icon.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = icon.closest('.card-item');
+          const img = card.querySelector('.card-image');
+          if (img) {
+            modalImg.src = img.src;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevents background scrolling
+          }
+        });
+      });
+
+      // Function to Close Modal
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restores background scrolling
+      }
+
+      // Event listeners to close modal
+      closeBtn.addEventListener('click', closeModal);
+
+      // Close when clicking outside the main image
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.classList.contains('modal-wrapper')) {
+          closeModal();
+        }
+      });
+
+      // Close on Escape key press
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
