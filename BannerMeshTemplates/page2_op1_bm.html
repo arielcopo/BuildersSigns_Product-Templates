@@ -289,7 +289,6 @@
     .btn-row {
       display: flex;
       gap: 20px;
-      margin-top: 4px;
     }
 
     .btn {
@@ -535,13 +534,13 @@
   <div class="form-container">
     
     <div class="field-group">
-      <label class="field-label">Your Email</label>
+      <label class="field-label">Your Email <span class="req">*</span></label>
       <input type="email" id="emailInput" class="input-field" placeholder="johndoe@gmail.com">
       <div class="error-text" id="emailError">Invalid Email Address</div>
     </div>
 
     <div class="field-group">
-      <label class="field-label">Order Number</label>
+      <label class="field-label">Order Number <span class="req">*</span></label>
       <input type="text" class="input-field" placeholder="003213">
     </div>
 
@@ -599,6 +598,13 @@
         </div>
       </div>
     </div>
+
+    <!-- Website Link -->
+    <div class="field-group">
+      <label class="field-label">Website Link <span class="req">*</span></label>
+      <input type="text" class="input-field" placeholder="www.builderssigns.com.au">
+    </div>
+
 
     <!-- Phone Number & Builders No. (2 Columns) 
     <div class="row-2-col">

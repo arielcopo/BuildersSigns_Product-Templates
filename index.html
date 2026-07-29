@@ -71,7 +71,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 40px; /* Space between title and the cards grid */
+      gap: 64px; /* Space between title and the cards grid */
       padding: 0 20px;
       width: 100%;
     }
@@ -88,47 +88,63 @@
     /* --- Cards Grid Layout --- */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 inline columns */
+      grid-template-columns: repeat(3, 1fr); /* 3 inline columns on desktop */
       gap: 32px; /* 32px gap between columns */
       width: 100%;
       max-width: 1216px; /* Total combined max width */
+      justify-items: center; /* Centers the fixed-width cards within their grid cells */
     }
 
-    /* Card Styling */
+    /* Card Styling (Mapped from your exact inline styles) */
     .card-item {
-      background-color: #E5E5E5; /* Solid gray background */
+      width: 384px; /* Fixed size width */
+      max-width: 100%; /* Safety precaution for very small screens */
+      background-color: #FAFAFA;
       border-radius: 16px;
-      padding: 40px 24px;
+      border: 1px solid #E5E5E5; /* Replaces outline for cleaner rendering */
+      padding: 22px 2px 36px 2px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 220px;
-      text-decoration: none; /* In case it's used as a link */
+      gap: 22px;
+      text-decoration: none; 
       transition: background-color 0.2s ease, transform 0.2s ease;
       cursor: pointer;
     }
 
     .card-item:hover {
-      background-color: #D4D4D4; /* Slightly darker gray on hover */
+      background-color: #F0F0F0; /* Subtle hover effect */
       transform: translateY(-4px);
     }
 
-    .card-text {
-      color: #171717; /* Black text */
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 28px;
-      margin: 0;
+    .card-image {
+      width: 100%;
+      max-width: 380px;
+      height: 244px;
+      border-radius: 16px;
+      object-fit: cover;
     }
 
-    /* Responsive adjustments */
+    .card-text {
+      color: #171717;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 30px;
+      margin: 0;
+      text-align: center;
+      word-wrap: break-word;
+    }
+
+    /* --- Responsive Adjustments --- */
+    
+    /* Tablet layout */
     @media (max-width: 960px) {
       .cards-grid {
-        grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns on tablets */
+        grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns */
       }
     }
 
+    /* Mobile layout */
     @media (max-width: 630px) {
       .main-header {
         height: auto;
@@ -139,10 +155,11 @@
         font-size: 24px;
       }
       .cards-grid {
-        grid-template-columns: 1fr; /* Switch to 1 column on mobile */
+        grid-template-columns: 1fr; /* Switch to 1 column */
       }
-      .card-item {
-        min-height: 180px; /* Slightly shorter on mobile */
+      .card-image {
+        height: auto; /* Becomes responsive on height for mobile */
+        aspect-ratio: 380 / 244; /* Maintains the original image proportions */
       }
     }
   </style>
@@ -160,25 +177,27 @@
 
   <!-- Top Content -->
   <div class="onboarding-container">
-    <h1 class="title">Select Product Templates</h1>
+    <h1 class="title">Select Product <br/> Templates</h1>
 
     <!-- 3 Column Cards Grid -->
     <div class="cards-grid">
       
-      <!-- Card 1 -->
+      <!-- Card 1: Banner Mesh -->
       <a href="BannerMeshTemplates/page1_bm.html" class="card-item">
-        <h2 class="card-text">Banner Mesh Templates</h2>
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Banner-Mesh-Templates.png" alt="Banner Mesh">
+        <h2 class="card-text">Banner Mesh</h2>
       </a>
 
-     
-      <!-- Card 2 -->
+      <!-- Card 2: Branding Corflute -->
       <a href="BrandingCorfluteTemplates/page1_bc.html" class="card-item">
-        <h2 class="card-text">Branding Corflute Templates</h2>
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Branding-Corflutes-Templates.png" alt="Branding Corflute">
+        <h2 class="card-text">Branding Corflute</h2>
       </a>
 
-      <!-- Card 3 -->
+      <!-- Card 3: Compliance Corflute -->
       <a href="#" class="card-item">
-        <h2 class="card-text">Compliance Corflute Templates</h2>
+        <img class="card-image" src="https://builderssigns.com.au/wp-content/uploads/2026/07/Compliance-Corflutes-Templates.png" alt="Compliance Corflute">
+        <h2 class="card-text">Compliance Corflute</h2>
       </a>
 
     </div>
